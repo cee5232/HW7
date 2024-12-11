@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UN SDG Goals Demo</title>
+  <!-- Correct path to your un-goal.js -->
+  <script type="module" src="./un-sdg-new.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sustainable Goals</h1>
+
+  <!-- This is where all goals will be displayed -->
+  <div id="goals-grid" class="grid"></div>
+
+  <!-- Buttons to trigger actions -->
+  <button onclick="showAllGoals()">Show All Goals</button>
+  <button onclick="showAllColors()">Show All Colors</button>
+  <button onclick="randomizeGoal()">Randomize a Goal</button>
+  <button onclick="resetGoals()">Show Normal</button>
+
+  <script>
+    // Function to show all goals
+    function showAllGoals() {
+      const goalsGrid = document.getElementById('goals-grid');
+      goalsGrid.innerHTML = ''; // Clear the grid
+
+      for (let i = 1; i <= 17; i++) {
+        const goalElement = document.createElement('un-goal');
+        goalElement.goal = i.toString();
+        goalsGrid.appendChild(goalElement);
+      }
+    }
+
+    // Function to show all colors only (colorOnly)
+    function showAllColors() {
+      const goalsGrid = document.getElementById('goals-grid');
+      goalsGrid.innerHTML = ''; // Clear the grid
+
+      for (let i = 1; i <= 17; i++) {
+        const goalElement = document.createElement('un-goal');
+        goalElement.goal = i.toString();
+        goalElement.colorOnly = true; // Show only color
+        goalsGrid.appendChild(goalElement);
+      }
+    }
+
+    // Function to randomize a single goal
+    function randomizeGoal() {
+      const goalsGrid = document.getElementById('goals-grid');
+      goalsGrid.innerHTML = ''; // Clear the grid
+
+      const randomGoal = Math.floor(Math.random() * 17) + 1;
+      const goalElement = document.createElement('un-goal');
+      goalElement.goal = randomGoal.toString();
+      goalsGrid.appendChild(goalElement);
+    }
+
+    // Function to reset the view and show normal goals
+    function resetGoals() {
+      showAllGoals(); // Call the function to display all goals
+    }
+
+    // Load all goals on page load
+    showAllGoals();
+  </script>
+</body>
+</html>
