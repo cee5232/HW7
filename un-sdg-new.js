@@ -13,15 +13,18 @@ class UNGoal extends LitElement {
     this.goal = '1';
     this.label = '';
     this.colorOnly = false;
-    this.size = '100px'; // Default size
+    this.size = '100px'; 
   }
 
   render() {
+    // Get the goal name and alternative text
     const goalName = `Goal ${this.goal}: ${this.getGoalName(this.goal)}`;
     const altText = this.label || goalName;
-    const goalSvg = `./lib/svgs/goal-${this.goal}.svg`; // Corrected to your "goal-[number].svg" format
+    // Get the SVG path and color for the goal
+    const goalSvg = `./lib/svgs/goal-${this.goal}.svg`; 
     const color = this.getGoalColor(this.goal);
 
+    // Render the component based on the `colorOnly` property
     return html`
       <style>
         .goal {
@@ -43,6 +46,7 @@ class UNGoal extends LitElement {
     `;
   }
 
+  // Gets the name of the UN goal based on the provided goal number
   getGoalName(goal) {
     const names = {
       '1': 'No Poverty',
@@ -66,6 +70,7 @@ class UNGoal extends LitElement {
     return names[goal] || 'Goal';
   }
 
+  // Gets the color associated with the UN goal
   getGoalColor(goal) {
     const colors = {
       '1': '#e5243b',
